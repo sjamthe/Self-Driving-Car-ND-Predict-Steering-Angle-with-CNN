@@ -22,8 +22,7 @@ Most of the steering angle prediction model including the one by Nvdia use compl
  I split my image into two parts. The left images trains a network to predict a steering angle, the same network (but a different model) predicts steering angle again. I look at the probabilities of both prediction and select the one with higher probability as the final steering angle.
 
 ### Data preparation
-Each captured input image is 320 x 160 x 3.
+Each captured input image is 320 x 160 x 3. We crop a 64x64 block at 30,64 offset for left image and 64x64 at 226,64 offset for right image.
 
-![](images/input.jpg)
-
+!(images/input.jpg) !(images/output.jpg)
 
