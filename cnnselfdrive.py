@@ -38,23 +38,23 @@ def steering_angle(left_pred, left_prob, right_pred, right_prob):
   return angle(pred)
 
 def get_throttle(speed, angle):
-  max_speed = 30
+  max_speed = 40
   max_turn = 0.43
-  sharp_turn = 0.10
-  turn_speed = 15
-  max_throttle = 0.4
+  sharp_turn = 0.1
+  turn_speed = 12
+  max_throttle = 0.2
   min_throttle = 0.2
 
   if(abs(angle) > sharp_turn):
     if(speed > turn_speed):
       #slow down
-      throttle = -1*max_throttle*(abs(angle) - sharp_turn)/(max_turn - sharp_turn)
+      throttle = -1*max_throttle *(abs(angle) - sharp_turn)/(max_turn - sharp_turn)
     else:
       throttle = min_throttle
   else:
     if(speed < max_speed):
       # accelerate
-      throttle = max_throttle*(max_speed - speed)/max_speed
+      throttle = max_throttle *(max_speed - speed)/max_speed
     else:
       throttle = -1*max_throttle
 
@@ -76,8 +76,8 @@ def cnn_angle(cnt, image, psteering_angle=0, pthrottle=0, pspeed=0):
 def load_models():
   global lmodel, rmodel
 
-  lmodel = models.load_model('left_steering_model-v2.h5')
-  rmodel = models.load_model('right_steering_model-v2.h5')
+  lmodel = models.load_model('left_steering_model.h5')
+  rmodel = models.load_model('right_steering_model.h5')
   print("Models loaded.")
 
 def load_image(file):

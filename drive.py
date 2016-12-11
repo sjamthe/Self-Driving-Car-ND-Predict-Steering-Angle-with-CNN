@@ -70,11 +70,11 @@ def telemetry(sid, data):
     #fo.write(output + "\n")
 
     #print("steering,",output)
-    #img1 = array2PIL(image_array)
-    #dir = './input/'
-    #if(os.path.isdir(dir) is False):
-    #    os.mkdir(dir)
-    #img1.save(dir + str(cnt) + '.jpg')
+    img1 = array2PIL(image_array)
+    dir = './input/'
+    if(os.path.isdir(dir) is False):
+        os.mkdir(dir)
+    img1.save(dir + str(cnt) + '.jpg')
 
     send_control(new_steering_angle, new_throttle)
 
