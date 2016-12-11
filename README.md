@@ -23,6 +23,7 @@ Most of the steering angle prediction model including the one by Nvdia use compl
 
 ### Data preparation
 Each captured input image is 320 x 160 x 3.
+
 ![](images/input.jpg)
 
 
