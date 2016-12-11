@@ -2,6 +2,9 @@
 
 Predicting the steering angle of the car using CNN with center/front image as input.
 
+[![Self driving car Video](https://www.youtube.com/watch?v=bt4rjevrtnc&feature=youtu.be/0.jpg)](https://www.youtube.com/watch?v=bt4rjevrtnc&feature=youtu.be/)
+
+
 ## Overview
 This repo is for the submission of Project 3 'Behavioral Cloning' in Udacity's SDC ND. The goal was to use a game simulator and drive a car using CNN.
 
@@ -54,4 +57,4 @@ This way I can deaw the lanes on the image just like I did in CV model. This wil
 The final model will take the left and right lanes as input and predict output.
 My CV program uses previous lanes to do a better prediction lanes on images that are not clear. That will be possible in this model as well.
 
-I also want to increase the left and right image size.
+I also want to increase the left and right image size
