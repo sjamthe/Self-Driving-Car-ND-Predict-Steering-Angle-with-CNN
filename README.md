@@ -54,4 +54,4 @@ This way I can deaw the lanes on the image just like I did in CV model. This wil
 The final model will take the left and right lanes as input and predict output.
 My CV program uses previous lanes to do a better prediction lanes on images that are not clear. That will be possible in this model as well.
 
-I also want to increase the left and right image size
+I also want to increase the left and right image size.
