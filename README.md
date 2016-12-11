@@ -2,7 +2,7 @@
 
 Predicting the steering angle of the car using CNN with center/front image as input.
 
-[![Self driving car Video](https://www.youtube.com/watch?v=bt4rjevrtnc&feature=youtu.be/0.jpg)](https://www.youtube.com/watch?v=bt4rjevrtnc&feature=youtu.be/)
+[![Self driving car Video](http://img.youtube.com/vi/bt4rjevrtnc/0.jpg)](https://www.youtube.com/watch?v=bt4rjevrtnc)
 
 
 ## Overview
