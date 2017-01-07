@@ -1,3 +1,10 @@
+"""
+This module is the main interface to the simulator.
+telemetry function gets called by the simulator server and it send front image
+along with current throttle setting and speed.
+We pass the image to cnnselfdrive.cnn_angle function that predicts the steering
+angle and throttle setting.
+"""
 import argparse
 import base64
 import json

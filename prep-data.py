@@ -1,3 +1,12 @@
+"""
+This program is used to create the training data needed for the model.
+It takes each front image and splits it in the middle. The left image trains
+left_image_model and the right_image trains the right_image_model.
+We use both models independently to predict the steering angle
+
+This module also limits steering angle between -0.43 and +.43 which is about
+25 degrees in either directions. We skip images that are not in this range.
+"""
 import sys
 import numpy as np
 import os.path
@@ -21,6 +30,8 @@ def load_images(dirname, inputfile, picklefile):
       os.path.exists(filename)):
       image = imread(filename)
       #cropping image top & bottom - height is 160 we keep only 64-128
+      # left image is between 30 - 94
+      # right image is between 226 - 290
       left = image[64:128,30:94,:]
       left = imresize(left,(32,32),interp='nearest')
       right = image[64:128,226:290,:]

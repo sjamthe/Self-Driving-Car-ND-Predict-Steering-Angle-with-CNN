@@ -1,5 +1,9 @@
 """
-Self driving using CNN steering angle prediction
+Self driving using CNN steering angle prediction.
+This code load's the left and right image models.
+Both images are use to predict the steering angle separately.
+If the predicted angles are not the same then we take the one with higher
+probability of prediction.
 """
 import sys
 from scipy.ndimage import imread
@@ -10,6 +14,13 @@ import numpy as np
 lmodel = None
 rmodel = None
 
+"""
+Split the front image in the middle into left and right images.
+it is cropped  top & bottom - height is 160 we keep only 64-128
+left image is between 30 - 94
+right image is between 226 - 290
+Resize the images into 32x32 size
+"""
 def prepare_image(image):
   left = image[64:128,30:94,:]
   left = imresize(left,(32,32),interp='nearest')
@@ -18,6 +29,9 @@ def prepare_image(image):
 
   return left, right
 
+"""
+Returns steering angle and probability of prediction.
+"""
 def predict(model, image):
   X_test = np.array([image])
   results = model.predict(X_test, batch_size=64, verbose=0)
@@ -26,9 +40,16 @@ def predict(model, image):
 
   return y_out[0], proba[0]
 
+"""
+Convert the angle from predicted class to real angle.
+"""
 def angle(val):
   return (val-8.6)/20
 
+"""
+Choose the angle between left and right predictions based on probability
+We chose the angle with higher probability of prediction
+"""
 def steering_angle(left_pred, left_prob, right_pred, right_prob):
   if(left_prob[left_pred] > right_prob[right_pred]):
     pred = left_pred
@@ -37,6 +58,9 @@ def steering_angle(left_pred, left_prob, right_pred, right_prob):
 
   return angle(pred)
 
+"""
+We manage throttle based on how fast we are going and how steep is the turn
+"""
 def get_throttle(speed, angle):
   max_speed = 40
   max_turn = 0.43
@@ -60,6 +84,9 @@ def get_throttle(speed, angle):
 
   return throttle
 
+"""
+This is the main wrapper function called by drive.py
+"""
 def cnn_angle(cnt, image, psteering_angle=0, pthrottle=0, pspeed=0):
   global lmodel, rmodel
 

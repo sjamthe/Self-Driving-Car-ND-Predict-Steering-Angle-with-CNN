@@ -1,3 +1,16 @@
+"""
+I am using the same CNN model I built for traffic sign prediction. I have only
+changed the last layer. Instead of predicting 47 classes of traffic signs it
+predicts 18 classes of steering angles. A valid steering angle turn is between
+0.43 radians in either direction (which is 25 degrees).
+-0.43 becomes class 0 and .43 becomes class 17
+
+The benefit of using the same CNN function is that we can load the weights
+from traffic model and reduce training time.
+
+The same network is used for left and right images but is trained separately.
+both networks predict steering angle. In training
+"""
 import sys
 import numpy as np
 import os.path
@@ -16,6 +29,10 @@ from keras.layers.core import Dropout
 from keras.regularizers import l2
 from keras.preprocessing.image import ImageDataGenerator
 
+"""
+Load the data prepared by prep-data.py
+each image is 32x32 and label is 0-17
+"""
 def load_data(picklefile, in_data):
   with open(picklefile, mode='rb') as f:
     data = pickle.load(f)
@@ -48,12 +65,19 @@ def build_model():
   model.load_weights('my_keras_traffic_model.h5', by_name=True)
   return model
 
+"""
+Function to shuffle the input images and output data randomly
+"""
 def unison_shuffled_copies(a, b, c):
   assert len(a) == len(b)
   assert len(a) == len(c)
   p = np.random.permutation(len(a))
   return a[p], b[p], c[p]
 
+"""
+Train and validate the model.
+we reserve 10% for validation
+"""
 def train_model(model, X_input, Y_output):
   learning_rate = .0001
 
@@ -84,6 +108,10 @@ def train_model(model, X_input, Y_output):
 
   return X_test, y_test
 
+"""
+Convert the output label back to steering angle in radians
+-0.43 is class 0 and .43 is 17
+"""
 def angle(val):
   return (val-8.6)/20
 
@@ -102,6 +130,9 @@ def predict(model, X_test, y_test):
 
   return y_out, proba
 
+"""
+Compare steering_angle predictions from left and right models
+"""
 def compare(y_test,left_pred,left_prob,y_right,right_pred,right_prob):
   incorrects = []
   y_errors = []

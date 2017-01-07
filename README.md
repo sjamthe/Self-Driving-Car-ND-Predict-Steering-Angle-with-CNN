@@ -52,9 +52,9 @@ Out of the 10k images (15k later) I used 10% for testing, 10% for validation
 The model trained on left images had an accuracy of 97.8% an the one trained on right images was 96.2% accurate. But the combined accuracy of the model was 98.2% as I am able to select steering angle from any of the model based on their probability of success.
 
 # Future Ideas
-It is very hard to see what exactly the model is learning and what it really saw in the image that resulted in the steering angle prediction. This is unsettling for me. So my goal is to actually use the left model to predict the left lane (slope, intercept) and right model to so that for right image.
-This way I can deaw the lanes on the image just like I did in CV model. This will make is very clear if lanes are not detected and I can replace those images with correct lane markings and retrain.
+It is very hard to see what exactly the model is learning and what it really saw in the image that resulted in the steering angle prediction. This is unsettling for me. So my goal is to actually use the left model to predict the left lane (slope, intercept) and right model to the same for the right image.
+This way I can draw the lanes on the image just like I did in CV model. This will make is very clear if lanes are not detected and I can replace those images with correct lane markings and retrain.
 The final model will take the left and right lanes as input and predict output.
-My CV program uses previous lanes to do a better prediction lanes on images that are not clear. That will be possible in this model as well.
+My CV program uses previous lanes to do a better prediction lanes on images that are not clear. That will be possible in this model as well if I use RNN
 
 I also want to increase the left and right image size
